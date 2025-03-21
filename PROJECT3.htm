@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderlust Adventures</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/api/placeholder/1920/1080");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: white;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #ff6b6b;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 0 20px;
+            margin-bottom: 100px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 22px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #ff6b6b;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #ff5252;
+            transform: translateY(-3px);
+        }
+
+        /* Featured Destinations */
+        .destinations {
+            padding: 80px 50px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #ff6b6b;
+        }
+
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .destination-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .card-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #ff6b6b;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .card-button {
+            display: inline-block;
+            background-color: #ff6b6b;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .card-button:hover {
+            background-color: #ff5252;
+        }
+
+        /* Features Section */
+        .features {
+            background-color: #f9f9f9;
+            padding: 80px 50px;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature {
+            padding: 30px 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ff6b6b;
+        }
+
+        .feature h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 50px;
+            text-align: center;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial {
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background-color: white;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background-color: #ff6b6b;
+            color: white;
+            padding: 60px 50px;
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 18px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            font-size: 16px;
+        }
+
+        .newsletter-button {
+            background-color: #333;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 0 50px 50px 0;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter-button:hover {
+            background-color: #222;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .footer-links li {
+            margin: 0 15px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ff6b6b;
+        }
+
+        .social-icons {
+            margin-bottom: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 24px;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #ff6b6b;
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px 30px;
+                flex-direction: column;
+            }
+
+            .logo {
+                margin-bottom: 20px;
+            }
+
+            .nav-links li {
+                margin: 0 10px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .destinations,
+            .features,
+            .testimonials {
+                padding: 60px 30px;
+            }
+
+            .newsletter {
+                padding: 40px 30px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-input {
+                border-radius: 50px;
+                margin-bottom: 10px;
+            }
+
+            .newsletter-button {
+                border-radius: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Hero Section -->
+    <header>
+        <nav>
+            <div class="logo">Wander<span>lust</span></div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Destinations</a></li>
+                <li><a href="#">Packages</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="hero">
+            <h1>Explore the Unexplored</h1>
+            <p>Discover breathtaking destinations around the world with our exclusive travel packages tailored to your adventure needs.</p>
+            <a href="#" class="cta-button">Start Your Journey</a>
+        </div>
+    </header>
+
+    <!-- Featured Destinations Section -->
+    <section class="destinations">
+        <h2 class="section-title">Popular Destinations</h2>
+        <div class="destination-grid">
+            <div class="destination-card">
+                <div class="card-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                <div class="card-content">
+                    <h3>Santorini, Greece</h3>
+                    <p>Experience breathtaking sunsets and pristine white architecture on this beautiful Greek island.</p>
+                    <span class="price">From $899</span>
+                    <a href="#" class="card-button">View Details</a>
+                </div>
+            </div>
+            <div class="destination-card">
+                <div class="card-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                <div class="card-content">
+                    <h3>Bali, Indonesia</h3>
+                    <p>Discover paradise with lush rice terraces, sacred temples, and pristine beaches.</p>
+                    <span class="price">From $799</span>
+                    <a href="#" class="card-button">View Details</a>
+                </div>
+            </div>
+            <div class="destination-card">
+                <div class="card-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                <div class="card-content">
+                    <h3>Kyoto, Japan</h3>
+                    <p>Immerse yourself in ancient temples, beautiful gardens, and traditional Japanese culture.</p>
+                    <span class="price">From $1099</span>
+                    <a href="#" class="card-button">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">Why Choose Us</h2>
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">✈️</div>
+                <h3>Exclusive Packages</h3>
+                <p>Handcrafted itineraries tailored to provide unique and memorable experiences at the best prices.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🏨</div>
+                <h3>Premium Accommodations</h3>
+                <p>Stay in carefully selected hotels and resorts that offer comfort, luxury, and excellent service.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🧭</div>
+                <h3>Expert Guides</h3>
+                <p>Our knowledgeable local guides ensure you experience the authentic culture of each destination.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🛡️</div>
+                <h3>24/7 Support</h3>
+                <p>Travel with peace of mind knowing our team is always available to assist you during your journey.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2 class="section-title">Happy Travelers</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <p>"Our trip to Bali was absolutely magical! The accommodations were luxurious and the guided tours revealed hidden gems we would have never found on our own."</p>
+                <div class="testimonial-author">Sarah & Thomas</div>
+            </div>
+            <div class="testimonial">
+                <p>"The Japan tour exceeded all our expectations. Our guide was incredibly knowledgeable and made the experience unforgettable. Will definitely book with Wanderlust again!"</p>
+                <div class="testimonial-author">Michael Johnson</div>
+            </div>
+            <div class="testimonial">
+                <p>"From booking to return, everything was handled professionally. The personalized itinerary perfectly matched our interests and the value for money was exceptional."</p>
+                <div class="testimonial-author">Emily Richards</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <h2>Get Inspired</h2>
+        <p>Subscribe to our newsletter and receive exclusive travel deals, tips, and inspiration for your next adventure.</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
+            <button type="submit" class="newsletter-button">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <ul class="footer-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+        <div class="social-icons">
+            <a href="#">📱</a>
+            <a href="#">📸</a>
+            <a href="#">📘</a>
+            <a href="#">📊</a>
+        </div>
+        <p class="copyright">© 2025 Wanderlust Adventures. All rights reserved.</p>
+    </footer>
+</body>
+</html>
